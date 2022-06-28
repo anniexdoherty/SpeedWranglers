@@ -1,11 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 20.0f;
-    public float turnSpeed = 45.0f;
+    public float speed = 20f;
+    public float turnSpeed = 45f;
 
     public float horizontalInput;
     public float verticalInput;
@@ -18,13 +18,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // transform.Translate(0,0,1);
 
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
-        transform.Translate(Vector3.forward * Time.deltaTime * 20);
-
-        //transform.Translate (Vector3.right * Time.deltaTime * turnSpeed * horizontalInput * verticalInput)
-
-        transform.Rotate(Vector3.up, turnSpeed * horizontalInput * Time.deltaTime);
+       horizontalInput = Input.GetAxis("Horizontal");
+       verticalInput = Input.GetAxis("Vertical");
+       transform.Translate( Vector3.forward * Time.deltaTime * speed * verticalInput );
+       //transform.Translate( Vector3.right * Time.deltaTime * turnSpeed * horizontalInput);
+       transform.Rotate( Vector3.up, turnSpeed * horizontalInput * Time.deltaTime );
     }
 }
