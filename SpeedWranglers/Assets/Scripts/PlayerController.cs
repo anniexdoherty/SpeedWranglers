@@ -6,13 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 20f;
     public float turnSpeed = 45f;
-
+    //public Rigidbody rb;
     public float horizontalInput;
     public float verticalInput;
     // Start is called before the first frame update
     void Start()
     {
-
+        //rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -22,7 +22,8 @@ public class PlayerController : MonoBehaviour
 
        horizontalInput = Input.GetAxis("Horizontal");
        verticalInput = Input.GetAxis("Vertical");
-       transform.Translate( Vector3.forward * Time.deltaTime * speed * verticalInput );
+       //rb.AddForce(1,1,1,ForceMode.Impulse);
+       transform.Translate( new Vector3(0,0,1) * Time.deltaTime * speed * verticalInput );
        //transform.Translate( Vector3.right * Time.deltaTime * turnSpeed * horizontalInput);
        transform.Rotate( Vector3.up, turnSpeed * horizontalInput * Time.deltaTime );
     }
