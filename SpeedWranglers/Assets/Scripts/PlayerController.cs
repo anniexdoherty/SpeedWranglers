@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     //public Rigidbody rb;
     public float horizontalInput;
     public float verticalInput;
+    public GameObject playerObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,5 +27,7 @@ public class PlayerController : MonoBehaviour
        transform.Translate( new Vector3(0,0,1) * Time.deltaTime * speed * verticalInput );
        //transform.Translate( Vector3.right * Time.deltaTime * turnSpeed * horizontalInput);
        transform.Rotate( Vector3.up, turnSpeed * horizontalInput * Time.deltaTime );
+
     }
+
 }
