@@ -4,10 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Plane
   - Road
   - Bridge
   - Water
+=======
+  - obstacle
+>>>>>>> 34d578fa7d928f8213a980c8709ddb119decb254
   layers:
   - Default
   - TransparentFX
