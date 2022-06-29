@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     public bool isGameActive;
-    private float 
+    
 
     public GameObject titleScreen;
     // Start is called before the first frame update
