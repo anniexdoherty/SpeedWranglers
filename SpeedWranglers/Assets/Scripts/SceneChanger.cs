@@ -18,11 +18,11 @@ public class SceneChanger : MonoBehaviour
     }
     public void trackone()
     {
-        SceneManager.LoadScene("Normal");
+        SceneManager.LoadScene("Track1");
     }
 
     public void tracktwo()
     {
-        SceneManager.LoadScene("Hard");
+        SceneManager.LoadScene("Track2");
     }
 }
