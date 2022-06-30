@@ -11,19 +11,31 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     public bool isGameActive;
+<<<<<<< Updated upstream
     
+=======
+>>>>>>> Stashed changes
 
     public GameObject titleScreen;
+
+    public string gameSceneName;
+
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    public void StartGame(int difficulty)
+    public void StartEasyTrack()
     {
-        
+        SceneManager.LoadScene("race_track_lake");    
     }
+
+    public void StartHardTrack()
+    {
+
+    }
+
 
     // Update is called once per frame
     void Update()
