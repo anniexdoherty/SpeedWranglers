@@ -36,7 +36,7 @@ public class WheelController : MonoBehaviour
         if(Input.GetKey(KeyCode.Space))
         {
             currentBreakForce = breakingForce;
-            rb.AddForce(new Vector3(cam.transform.forward.x,0,cam.transform.forward.z) * -currentAcceleration);
+            rb.AddForce(new Vector3(cam.transform.forward.x,0,cam.transform.forward.z) * -(1.9f * currentAcceleration));
         }
         else
         {
