@@ -6,15 +6,35 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 20f;
     public float turnSpeed = 45f;
-    public Rigidbody rb;
     public float horizontalInput;
     public float verticalInput;
     public GameObject playerObject;
+    public static PlayerController cc;
+    public List<AxleInfo> axleInfos;
+    public float maxMotorTorque;
+    public float maxSteeringAngle;
+    public float carMaxSpeed = 100;
+    public float carCurrentSpeed = 0;
+
+    Rigidbody rb;
+
     // Start is called before the first frame update
-    void Start()
+
+    public void Start()
     {
-        //rb = GetComponent<Rigidbody>();
+        cc = this;
+        rb = GetComponent<Rigidbody>();
+
     }
+   
+    public void ApplyLocalPositionToVisuals(WheelCollider collider)
+    {
+        if (collider.transform.childCount == 0)
+        {
+            return;
+        }
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -28,6 +48,14 @@ public class PlayerController : MonoBehaviour
     //    //transform.Translate( Vector3.right * Time.deltaTime * turnSpeed * horizontalInput);
         transform.Rotate( Vector3.up, turnSpeed * horizontalInput * Time.deltaTime );
 
+    }
+    [System.Serializable]
+    public class AxleInfo
+    {
+        public WheelCollider leftWheel;
+        public WheelCollider rightWheel;
+        public bool motor;
+        public bool steering;
     }
 
 }
