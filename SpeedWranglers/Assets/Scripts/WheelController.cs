@@ -21,13 +21,18 @@ public class WheelController : MonoBehaviour
     private float currentBreakForce = 0f;
     private float currentTurnAngle = 0f;
 
+    
+
 
 
     
     
     private void FixedUpdate()
     {
+        
+        
         // forward and reverse acceleration from the vertical access
+        
 
         currentAcceleration = acceleration * Input.GetAxis("Vertical");
         rb.AddForce(new Vector3(cam.transform.forward.x,0,cam.transform.forward.z) * currentAcceleration);
@@ -72,6 +77,8 @@ public class WheelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
         
     }
 }

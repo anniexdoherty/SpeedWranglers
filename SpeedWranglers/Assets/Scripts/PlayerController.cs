@@ -15,6 +15,11 @@ public class PlayerController : MonoBehaviour
     public float maxSteeringAngle;
     public float carMaxSpeed = 100;
     public float carCurrentSpeed = 0;
+    public WheelController wheelController;
+
+    public GameObject SpawnPoint;
+
+    
 
     Rigidbody rb;
 
@@ -39,7 +44,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // transform.Translate(0,0,1);
+        
+        // restart button 
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            transform.position = SpawnPoint.transform.position;
+            //transform.Rotate;
+            transform.rotation = Quaternion.Euler(0, 55.418f, 0);
+            //SceneManagement.LoadScene("Track1");
+        }
 
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
