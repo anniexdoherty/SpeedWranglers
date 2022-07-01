@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 20f;
-    public float turnSpeed = 45f;
-    public float horizontalInput;
-    public float verticalInput;
-    public GameObject playerObject;
-    public static PlayerController cc;
+   
     public List<AxleInfo> axleInfos;
     public float maxMotorTorque;
     public float maxSteeringAngle;
+
+    public static PlayerController cc;
+
     public float carMaxSpeed = 100;
     public float carCurrentSpeed = 0;
 
@@ -33,22 +31,39 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+        Transform visualWheel = collider.transform.GetChild(0);
+        Vector3 position;
+        Quaternion rotation;
+        collider.GetWorldPose(out position, out rotation);
+
+        visualWheel.transform.position = position;
+        visualWheel.transform.rotation = rotation;
     }
 
-
-    // Update is called once per frame
-    void Update()
+    public void FixedUpdate()
     {
-        // transform.Translate(0,0,1);
+        float motor = maxMotorTorque * Input.GetAxis("Vertical");
+        float steering = maxSteeringAngle * Input.GetAxis("Horizontal");
 
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
-    //    rb.AddForce(Vector3.forward * speed * verticalInput * Time.deltaTime);
-    //    //transform.Translate( new Vector3(0,0,1) * Time.deltaTime * speed * verticalInput );
-    //    //transform.Translate( Vector3.right * Time.deltaTime * turnSpeed * horizontalInput);
-        transform.Rotate( Vector3.up, turnSpeed * horizontalInput * Time.deltaTime );
+        foreach(AxleInfo axleInfo in axleInfos)
+        {
+            if (axleInfo.steering)
+            {
+                axleInfo.leftWheel.steerAngle = steering;
+                axleInfo.rightWheel.steerAngle = steering;
+            }
+            if (axleInfo.motor)
+            {
+                axleInfo.leftWheel.motorTorque = motor;
+                axleInfo.rightWheel.motorTorque = motor;
 
+                carCurrentSpeed = (rb.velocity.magnitude * 3.6f) / carMaxSpeed;
+            }
+            ApplyLocalPositionToVisuals(axleInfo.leftWheel);
+            ApplyLocalPositionToVisuals(axleInfo.rightWheel);
+        }
     }
+
     [System.Serializable]
     public class AxleInfo
     {
