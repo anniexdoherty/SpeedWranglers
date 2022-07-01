@@ -1664,8 +1664,8 @@ GameObject:
   - component: {fileID: 274933219590433465}
   - component: {fileID: 274933219590433447}
   - component: {fileID: 1085837687223048178}
-  - component: {fileID: 1085837687223048181}
   - component: {fileID: 1085837687223048180}
+  - component: {fileID: 865975503}
   m_Layer: 0
   m_Name: moses
   m_TagString: Untagged
@@ -1775,7 +1775,21 @@ MonoBehaviour:
   rb: {fileID: 274933219590433444}
   cam: {fileID: 274933218322316858}
   currentAcceleration: 0
---- !u!82 &1085837687223048181
+--- !u!114 &1085837687223048180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085837687223048179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e2d499d77f699049ab3522d03af6b1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minPitch: 0.05
+  maxPitch: 4
+--- !u!82 &865975503
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1789,7 +1803,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1871,19 +1885,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1085837687223048180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1085837687223048179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e2d499d77f699049ab3522d03af6b1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minPitch: 0.05
 --- !u!1 &1112921331185146971
 GameObject:
   m_ObjectHideFlags: 0
