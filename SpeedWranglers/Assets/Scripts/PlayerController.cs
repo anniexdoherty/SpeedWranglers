@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-   
+    public float speed = 20f;
+    public float turnSpeed = 45f;
+    public float horizontalInput;
+    public float verticalInput;
+    public GameObject playerObject;
+    public static PlayerController cc;
     public List<AxleInfo> axleInfos;
     public float maxMotorTorque;
     public float maxSteeringAngle;
-
-    public static PlayerController cc;
-
     public float carMaxSpeed = 100;
     public float carCurrentSpeed = 0;
+    public WheelController wheelController;
+
+    public GameObject SpawnPoint;
+
+    
 
     Rigidbody rb;
 
@@ -31,39 +38,30 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        Transform visualWheel = collider.transform.GetChild(0);
-        Vector3 position;
-        Quaternion rotation;
-        collider.GetWorldPose(out position, out rotation);
-
-        visualWheel.transform.position = position;
-        visualWheel.transform.rotation = rotation;
     }
 
-    public void FixedUpdate()
+
+    // Update is called once per frame
+    void Update()
     {
-        float motor = maxMotorTorque * Input.GetAxis("Vertical");
-        float steering = maxSteeringAngle * Input.GetAxis("Horizontal");
-
-        foreach(AxleInfo axleInfo in axleInfos)
+        
+        // restart button 
+        if(Input.GetKeyDown(KeyCode.R))
         {
-            if (axleInfo.steering)
-            {
-                axleInfo.leftWheel.steerAngle = steering;
-                axleInfo.rightWheel.steerAngle = steering;
-            }
-            if (axleInfo.motor)
-            {
-                axleInfo.leftWheel.motorTorque = motor;
-                axleInfo.rightWheel.motorTorque = motor;
-
-                carCurrentSpeed = (rb.velocity.magnitude * 3.6f) / carMaxSpeed;
-            }
-            ApplyLocalPositionToVisuals(axleInfo.leftWheel);
-            ApplyLocalPositionToVisuals(axleInfo.rightWheel);
+            transform.position = SpawnPoint.transform.position;
+            //transform.Rotate;
+            transform.rotation = Quaternion.Euler(0, 55.418f, 0);
+            //SceneManagement.LoadScene("Track1");
         }
-    }
 
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
+    //    rb.AddForce(Vector3.forward * speed * verticalInput * Time.deltaTime);
+    //    //transform.Translate( new Vector3(0,0,1) * Time.deltaTime * speed * verticalInput );
+    //    //transform.Translate( Vector3.right * Time.deltaTime * turnSpeed * horizontalInput);
+        transform.Rotate( Vector3.up, turnSpeed * horizontalInput * Time.deltaTime );
+
+    }
     [System.Serializable]
     public class AxleInfo
     {
